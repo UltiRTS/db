@@ -2,6 +2,7 @@ import { DataSource } from "typeorm"
 import { Confirmation } from "./models/confirmation"
 import { User } from "./models/user"
 import { Chat, ChatRoom } from "./models/chat"
+import { Game } from "./models/game"
 import * as config from '../config'
 
 export const AppDataSource = new DataSource({
@@ -15,7 +16,8 @@ export const AppDataSource = new DataSource({
         User,
         Confirmation,
         Chat,
-        ChatRoom
+        ChatRoom,
+        Game
     ],
     synchronize: true
 })
