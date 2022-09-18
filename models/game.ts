@@ -10,4 +10,10 @@ export class Game {
 
     @Column()
     team_win: number
+
+    @Column('datetime')
+    start_time: Date
+
+    @Column('datetime')
+    end_time: Date
 }
