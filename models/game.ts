@@ -11,9 +11,9 @@ export class Game {
     @Column()
     team_win: number
 
-    @Column('datetime')
+    @Column('datetime', {default: new Date()})
     start_time: Date
 
-    @Column('datetime')
+    @Column('datetime', {default: new Date()})
     end_time: Date
 }
