@@ -30,6 +30,12 @@ export class User {
     @Column('boolean', {default: false})
     blocked: boolean
 
+    @Column('int', {default: 0})
+    winCount: number
+
+    @Column('int', {default: 0})
+    loseCount: number
+
     @OneToMany(() => Confirmation, (confirmation) => confirmation.user)
     confirmations: Confirmation[]
 
