@@ -11,9 +11,9 @@ export class Game {
     @Column()
     team_win: number
 
-    @Column('datetime', {default: new Date()})
+    @Column('datetime', {default:  () => "CURRENT_TIMESTAMP"})
     start_time: Date
 
-    @Column('datetime', {default: new Date()})
+    @Column('datetime', {default:  () => "CURRENT_TIMESTAMP"})
     end_time: Date
 }
