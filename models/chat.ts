@@ -9,7 +9,7 @@ export class ChatRoom {
     @Column()
     roomName: string
 
-    @Column()
+    @Column({default: ''})
     password: string
 
     @Column('datetime', {default: () => "CURRENT_TIMESTAMP"})
