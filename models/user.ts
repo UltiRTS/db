@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTabl
 import { Confirmation } from "./confirmation"
 import { Chat } from "./chat"
 import * as crypto from 'crypto'
+import { Adventure } from "./adventure"
 // import c from "crypto"
 
 @Entity()
@@ -41,6 +42,10 @@ export class User {
 
     @OneToMany(() => Chat, (chat) => chat.author)
     chats: Chat[]
+
+    @ManyToMany(() => Adventure)
+    @JoinTable()
+    adventures: Adventure[]
 
     @ManyToMany(() => User, (user) => user.id)
     @JoinTable()

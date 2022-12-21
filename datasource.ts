@@ -4,6 +4,7 @@ import { User } from "./models/user"
 import { Chat, ChatRoom } from "./models/chat"
 import { Game } from "./models/game"
 import * as config from '../config'
+import { Adventure } from "./models/adventure"
 
 export const AppDataSource = new DataSource({
     type: config.dbType,
@@ -17,7 +18,8 @@ export const AppDataSource = new DataSource({
         Confirmation,
         Chat,
         ChatRoom,
-        Game
+        Game,
+        Adventure
     ],
     synchronize: true
 })
