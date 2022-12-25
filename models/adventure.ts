@@ -9,7 +9,7 @@ export class Adventure {
     @Column()
     name: string
 
-    @Column()
+    @Column({type: 'text'})
     config: string
 
     @Column('datetime', {default: () => "CURRENT_TIMESTAMP"})
