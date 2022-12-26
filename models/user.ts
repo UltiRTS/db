@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable} from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, ManyToOne} from "typeorm"
 import { Confirmation } from "./confirmation"
 import { Chat } from "./chat"
 import * as crypto from 'crypto'
@@ -51,6 +51,11 @@ export class User {
     @JoinTable()
     friends: User[]
 
+    @OneToMany(() => Mark, (mark) => mark.user)
+    marks: Mark[]
+
+    @OneToMany(() => Mark, (mark) => mark.target)
+    reverseMarks: Mark[]
 
     static saltNhash(password: string) {
         const salt = crypto.randomBytes(16).toString('hex'); 
@@ -70,4 +75,19 @@ export class User {
             this.salt, 1000, 64, `sha512`).toString(`hex`); 
             return this.hash === hash; 
     }
+}
+
+@Entity()
+export class Mark {
+    @PrimaryGeneratedColumn()
+    id: number
+
+    @Column()
+    mark: string
+
+    @ManyToOne(() => User, (user) => user.marks)
+    user: User
+
+    @ManyToOne(() => User, (user) => user.reverseMarks)
+    target: User
 }
