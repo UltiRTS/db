@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, ManyToOne, JoinTable} from "typeorm";
 import { User } from "./user";
 
 @Entity()
@@ -11,4 +11,11 @@ export class Adventure {
 
     @Column('datetime', {default: () => "CURRENT_TIMESTAMP"})
     createAt: Date
+
+    @Column('boolean', {default: false})
+    closed: boolean
+
+    @ManyToMany(() => User)
+    @JoinTable()
+    members: User[]
 }
