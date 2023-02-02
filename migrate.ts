@@ -7,7 +7,7 @@ import { User } from "./models/user"
 
 const main = async () => {
     await AppDataSource.initialize();
-
+    await AppDataSource.synchronize();
     const user = new User();
     const password = 'test';
     const {salt, hash} = User.saltNhash(password)

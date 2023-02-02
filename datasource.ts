@@ -22,5 +22,4 @@ export const AppDataSource = new DataSource({
         Adventure,
         Mark
     ],
-    synchronize: true
 })
