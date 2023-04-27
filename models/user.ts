@@ -64,8 +64,8 @@ export class User {
   @OneToMany(() => Mark, (mark) => mark.target)
   reverseMarks: Mark[];
 
-  @OneToMany(() => Inventory, (inventory) => inventory.user)
-  inventory: Inventory[];
+  @OneToMany(() => InventoryItem, (inventory) => inventory.user)
+  inventory: InventoryItem[];
 
   static saltNhash(password: string) {
     const salt = crypto.randomBytes(16).toString('hex');
@@ -106,7 +106,7 @@ export class Mark {
 }
 
 @Entity()
-export class Inventory {
+export class InventoryItem {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -116,13 +116,13 @@ export class Inventory {
   @Column('int', { default: 0 })
   qty: number; // quantity of the item
 
-  @Column()
+  @Column({ default: 'consumable' })
   type: string; // type of the item
 
-  @Column()
+  @Column({ default: 'global' })
   scope: string; // scope of the item
 
-  @Column()
+  @Column({ default: '' })
   alias: string; // alias of the item
 
   @Column()
