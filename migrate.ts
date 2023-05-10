@@ -4,9 +4,9 @@ import 'reflect-metadata';
 import { AppDataSource } from './datasource';
 
 import { Confirmation } from './models/confirmation';
-import { User, InventoryItem } from './models/user';
+import { InventoryItem, User } from './models/user';
 
-export const migrate = async () => {
+export async function migrate() {
   await AppDataSource.synchronize();
   const user = new User();
   const password = 'test';
@@ -32,6 +32,6 @@ export const migrate = async () => {
   await AppDataSource.manager.save(confirmation);
   await AppDataSource.manager.save(sanity);
   await AppDataSource.destroy();
-};
+}
 
 //

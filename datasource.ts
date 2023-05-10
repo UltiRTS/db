@@ -1,11 +1,11 @@
 /** @format */
 
 import { DataSource } from 'typeorm';
+import * as config from '../config';
 import { Confirmation } from './models/confirmation';
 import { InventoryItem, Mark, User } from './models/user';
 import { Chat, ChatRoom } from './models/chat';
 import { Game } from './models/game';
-import * as config from '../config';
 import { Adventure } from './models/adventure';
 
 export const AppDataSource = new DataSource({

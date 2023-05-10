@@ -1,18 +1,19 @@
 /** @format */
 
+import * as crypto from 'node:crypto';
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
-  OneToMany,
-  ManyToMany,
+  Entity,
   JoinTable,
+  ManyToMany,
   ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Confirmation } from './confirmation';
 import { Chat } from './chat';
-import * as crypto from 'crypto';
 import { Adventure } from './adventure';
+
 // import c from "crypto"
 
 @Entity()
@@ -44,27 +45,27 @@ export class User {
   @Column('int', { default: 0 })
   loseCount: number;
 
-  @OneToMany(() => Confirmation, (confirmation) => confirmation.user)
+  @OneToMany(() => Confirmation, confirmation => confirmation.user)
   confirmations: Confirmation[];
 
-  @OneToMany(() => Chat, (chat) => chat.author)
+  @OneToMany(() => Chat, chat => chat.author)
   chats: Chat[];
 
   @ManyToMany(() => Adventure)
   @JoinTable()
   adventures: Adventure[];
 
-  @ManyToMany(() => User, (user) => user.id)
+  @ManyToMany(() => User, user => user.id)
   @JoinTable()
   friends: User[];
 
-  @OneToMany(() => Mark, (mark) => mark.user)
+  @OneToMany(() => Mark, mark => mark.user)
   marks: Mark[];
 
-  @OneToMany(() => Mark, (mark) => mark.target)
+  @OneToMany(() => Mark, mark => mark.target)
   reverseMarks: Mark[];
 
-  @OneToMany(() => InventoryItem, (inventory) => inventory.user)
+  @OneToMany(() => InventoryItem, inventory => inventory.user)
   inventory: InventoryItem[];
 
   static saltNhash(password: string) {
@@ -73,8 +74,8 @@ export class User {
     // Hashing user's salt and password with 1000 iterations,
 
     const hash = crypto
-      .pbkdf2Sync(password, salt, 1000, 64, `sha512`)
-      .toString(`hex`);
+      .pbkdf2Sync(password, salt, 1000, 64, 'sha512')
+      .toString('hex');
 
     return {
       salt,
@@ -83,9 +84,9 @@ export class User {
   }
 
   verify(password: string) {
-    var hash = crypto
-      .pbkdf2Sync(password, this.salt, 1000, 64, `sha512`)
-      .toString(`hex`);
+    const hash = crypto
+      .pbkdf2Sync(password, this.salt, 1000, 64, 'sha512')
+      .toString('hex');
     return this.hash === hash;
   }
 }
@@ -98,10 +99,10 @@ export class Mark {
   @Column()
   mark: string;
 
-  @ManyToOne(() => User, (user) => user.marks)
+  @ManyToOne(() => User, user => user.marks)
   user: User;
 
-  @ManyToOne(() => User, (user) => user.reverseMarks)
+  @ManyToOne(() => User, user => user.reverseMarks)
   target: User;
 }
 
@@ -128,6 +129,6 @@ export class InventoryItem {
   @Column()
   description: string; // description of the item
 
-  @ManyToOne(() => User, (user) => user.inventory)
+  @ManyToOne(() => User, user => user.inventory)
   user: User;
 }

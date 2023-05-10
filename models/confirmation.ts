@@ -1,24 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { User } from "./user";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from './user';
 
 @Entity()
 export class Confirmation {
-    @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+  @Column()
     text: string;
 
-    @Column()
+  @Column()
     type: string;
 
-    @Column()
+  @Column()
     payload: string;
 
-    @Column()
+  @Column()
     claimed: boolean;
 
-    @ManyToOne(() => User, (user) => user.confirmations)
-    user: User
+  @ManyToOne(() => User, user => user.confirmations)
+    user: User;
 }
-
