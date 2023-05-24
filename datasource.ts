@@ -26,4 +26,5 @@ export const AppDataSource = new DataSource({
     Mark,
     InventoryItem,
   ],
+  synchronize: false,
 });

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+  <changeSet author="_chingc (generated)" id="1684896277928-1">
+    <createTable tableName="adventure">
+      <column autoIncrement="true" name="id" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="config" type="TEXT">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="createAt" type="datetime">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueNumeric="0" name="closed" type="TINYINT(3)">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-2">
+    <createTable tableName="adventure_members_user">
+      <column name="adventureId" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="userId" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-3">
+    <createTable tableName="chat">
+      <column autoIncrement="true" name="id" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="message" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="createAt" type="datetime">
+        <constraints nullable="false" />
+      </column>
+      <column name="authorId" type="INT" />
+      <column name="roomId" type="INT" />
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-4">
+    <createTable tableName="chat_room">
+      <column autoIncrement="true" name="id" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="roomName" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValue="" name="password" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="createAt" type="datetime">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-5">
+    <createTable tableName="confirmation">
+      <column autoIncrement="true" name="id" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="text" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="type" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="payload" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="claimed" type="TINYINT(3)">
+        <constraints nullable="false" />
+      </column>
+      <column name="userId" type="INT" />
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-6">
+    <createTable tableName="game">
+      <column autoIncrement="true" name="id" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="game_config" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="team_win" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="start_time" type="datetime">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueComputed="CURRENT_TIMESTAMP" name="end_time" type="datetime">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-7">
+    <createTable tableName="inventory_item">
+      <column autoIncrement="true" name="id" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="name" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueNumeric="0" name="qty" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValue="consumable" name="type" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValue="global" name="scope" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValue="" name="alias" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="description" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="userId" type="INT" />
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-8">
+    <createTable tableName="mark">
+      <column autoIncrement="true" name="id" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="mark" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="userId" type="INT" />
+      <column name="targetId" type="INT" />
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-9">
+    <createTable tableName="user">
+      <column autoIncrement="true" name="id" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="username" type="VARCHAR(255)">
+        <constraints nullable="false" unique="true" />
+      </column>
+      <column name="hash" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="salt" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueNumeric="0" name="accessLevel" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueNumeric="0" name="exp" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueNumeric="0" name="blocked" type="TINYINT(3)">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueNumeric="0" name="winCount" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column defaultValueNumeric="0" name="loseCount" type="INT">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-10">
+    <createTable tableName="user_adventures_adventure">
+      <column name="userId" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="adventureId" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-11">
+    <createTable tableName="user_friends_user">
+      <column name="userId_1" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="userId_2" type="INT">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-12">
+    <createIndex indexName="FK_38375646905f9876844d328da90" tableName="mark">
+      <column name="userId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-13">
+    <createIndex indexName="FK_74f1ebea7c18510697c0e2a6be4" tableName="confirmation">
+      <column name="userId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-14">
+    <createIndex indexName="FK_76c3dd2c365117171d3b25b772d" tableName="inventory_item">
+      <column name="userId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-15">
+    <createIndex indexName="FK_873f1938e2afb7758cf302a58af" tableName="chat">
+      <column name="roomId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-16">
+    <createIndex indexName="FK_ac7ca6f6fbe56f2a231369f2171" tableName="chat">
+      <column name="authorId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-17">
+    <createIndex indexName="FK_f61ac50b92b0dda5dfdaf729696" tableName="mark">
+      <column name="targetId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-18">
+    <createIndex indexName="IDX_04840fd160b733de706a336013" tableName="user_friends_user">
+      <column name="userId_1" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-19">
+    <createIndex indexName="IDX_3a73fb96d10af42ec3b1c039ad" tableName="adventure_members_user">
+      <column name="adventureId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-20">
+    <createIndex indexName="IDX_418b1df5083cfd27ca203c7fae" tableName="user_adventures_adventure">
+      <column name="userId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-21">
+    <createIndex indexName="IDX_7198628c03456b8523b2b19dad" tableName="user_adventures_adventure">
+      <column name="adventureId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-22">
+    <createIndex indexName="IDX_8725f40d1e4329755ca86cbb47" tableName="adventure_members_user">
+      <column name="userId" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-23">
+    <createIndex indexName="IDX_e81f236c989f3fd54836b50a12" tableName="user_friends_user">
+      <column name="userId_2" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-24">
+    <addForeignKeyConstraint baseColumnNames="userId_1" baseTableName="user_friends_user"
+      constraintName="FK_04840fd160b733de706a3360134" deferrable="false" initiallyDeferred="false"
+      onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="user"
+      validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-25">
+    <addForeignKeyConstraint baseColumnNames="userId" baseTableName="mark"
+      constraintName="FK_38375646905f9876844d328da90" deferrable="false" initiallyDeferred="false"
+      onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+      referencedTableName="user" validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-26">
+    <addForeignKeyConstraint baseColumnNames="adventureId" baseTableName="adventure_members_user"
+      constraintName="FK_3a73fb96d10af42ec3b1c039ad3" deferrable="false" initiallyDeferred="false"
+      onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id"
+      referencedTableName="adventure" validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-27">
+    <addForeignKeyConstraint baseColumnNames="userId" baseTableName="user_adventures_adventure"
+      constraintName="FK_418b1df5083cfd27ca203c7fae9" deferrable="false" initiallyDeferred="false"
+      onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="user"
+      validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-28">
+    <addForeignKeyConstraint baseColumnNames="adventureId" baseTableName="user_adventures_adventure"
+      constraintName="FK_7198628c03456b8523b2b19dad0" deferrable="false" initiallyDeferred="false"
+      onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id"
+      referencedTableName="adventure" validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-29">
+    <addForeignKeyConstraint baseColumnNames="userId" baseTableName="confirmation"
+      constraintName="FK_74f1ebea7c18510697c0e2a6be4" deferrable="false" initiallyDeferred="false"
+      onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+      referencedTableName="user" validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-30">
+    <addForeignKeyConstraint baseColumnNames="userId" baseTableName="inventory_item"
+      constraintName="FK_76c3dd2c365117171d3b25b772d" deferrable="false" initiallyDeferred="false"
+      onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+      referencedTableName="user" validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-31">
+    <addForeignKeyConstraint baseColumnNames="userId" baseTableName="adventure_members_user"
+      constraintName="FK_8725f40d1e4329755ca86cbb472" deferrable="false" initiallyDeferred="false"
+      onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="user"
+      validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-32">
+    <addForeignKeyConstraint baseColumnNames="roomId" baseTableName="chat"
+      constraintName="FK_873f1938e2afb7758cf302a58af" deferrable="false" initiallyDeferred="false"
+      onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+      referencedTableName="chat_room" validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-33">
+    <addForeignKeyConstraint baseColumnNames="authorId" baseTableName="chat"
+      constraintName="FK_ac7ca6f6fbe56f2a231369f2171" deferrable="false" initiallyDeferred="false"
+      onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+      referencedTableName="user" validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-34">
+    <addForeignKeyConstraint baseColumnNames="userId_2" baseTableName="user_friends_user"
+      constraintName="FK_e81f236c989f3fd54836b50a12d" deferrable="false" initiallyDeferred="false"
+      onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id" referencedTableName="user"
+      validate="true" />
+  </changeSet>
+  <changeSet author="_chingc (generated)" id="1684896277928-35">
+    <addForeignKeyConstraint baseColumnNames="targetId" baseTableName="mark"
+      constraintName="FK_f61ac50b92b0dda5dfdaf729696" deferrable="false" initiallyDeferred="false"
+      onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+      referencedTableName="user" validate="true" />
+  </changeSet>
+</databaseChangeLog>
